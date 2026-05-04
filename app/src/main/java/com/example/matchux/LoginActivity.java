@@ -10,16 +10,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         // Firebase Auth 초기화
         auth = FirebaseAuth.getInstance();
@@ -58,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show();
                         // 로그인 성공 후 이동할 화면이 있다면 여기에 Intent 추가
-                        // Intent intent = new Intent(this, HomeActivity.class);
-                        // startActivity(intent);
-                        // finish();
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         String errorMessage = task.getException() != null ? task.getException().getMessage() : "로그인 실패";
                         Toast.makeText(this, "로그인 실패: " + errorMessage, Toast.LENGTH_SHORT).show();

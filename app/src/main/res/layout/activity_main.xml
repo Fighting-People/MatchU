@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- 전체 화면 레이아웃 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 앱 제목 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MatchU"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp"/>
+
+    <!-- 검색창 -->
+    <EditText
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="스터디 검색"
+        android:layout_margin="10dp"/>
+
+    <!-- 가로 스크롤 가능 카테고리 영역 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
+
+        <!-- 버튼들을 가로로 배치 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 공부 카테고리 -->
+            <Button
+                android:id="@+id/categoryButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공부" />
+
+            <!-- 운동 카테고리 -->
+            <Button
+                android:id="@+id/categoryButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운동" />
+
+            <!-- 음악 카테고리 -->
+            <Button
+                android:id="@+id/categoryButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="음악" />
+
+            <!-- 게임 카테고리 -->
+            <Button
+                android:id="@+id/categoryButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="게임" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- 스터디 목록 출력 -->
+    <ListView
+        android:id="@+id/studyListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- 스터디 생성 버튼 -->
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="스터디 생성"/>
 
 </LinearLayout>
