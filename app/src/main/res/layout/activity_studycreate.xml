@@ -1,0 +1,56 @@
+<!-- activity_study_create.xml -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 스터디 생성 배너 -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="스터디 생성"
+        android:textSize="24sp" />
+
+    <!-- 스터디 이름 입력 -->
+    <EditText
+        android:id="@+id/StudyName"
+        android:hint="스터디 이름"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- 카테고리 입력 -->
+    <EditText
+        android:id="@+id/Category"
+        android:hint="카테고리"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- 스터디 설명 입력 -->
+
+    <!-- 최대 인원 입력 -->
+    <EditText
+        android:id="@+id/Description"
+        android:layout_width="match_parent"
+        android:layout_height="281dp"
+        android:hint="설명" />
+
+    <EditText
+        android:id="@+id/SetMaxPeople"
+        android:hint="최대 인원"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- 스터디 생성 버튼 -->
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="스터디 생성" />
+</LinearLayout>

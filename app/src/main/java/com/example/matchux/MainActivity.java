@@ -1,5 +1,9 @@
 package com.example.matchux;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -11,7 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
 public class MainActivity extends AppCompatActivity {
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
    //<button 객체>
     Button createButton;
@@ -61,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
         //스터디 리스트 뷰 세팅
         studyListView.setAdapter(adapter);
 
-        //스터디 방 생성 버튼 클릭
-        createButton.setOnClickListener(v -> {
 
-            Toast.makeText(this, "스터디방 생성", Toast.LENGTH_SHORT).show();}
-        );
+        //스터디 생성 버튼 클릭
+
+        createButton.setOnClickListener(v -> {
+                    startActivity(new Intent(this, StudyCreateActivity.class));
+                });
         //카테고리1 버튼 클릭
         categoryButton1.setOnClickListener(v -> {
             studyListView.setAdapter(adapter1);

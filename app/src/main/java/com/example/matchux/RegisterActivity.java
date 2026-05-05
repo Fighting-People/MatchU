@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         imageButton.setOnClickListener(v -> backToMain());
     }
     public void backToMain(){
-        navigateToMainActivity();
+        navigateToLoginActivity();
 
     }
 
@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show();
 
-                        navigateToMainActivity();
+                        navigateToLoginActivity();
                     } else {
                         Toast.makeText(this,
                                 "회원가입 실패: " + (task.getException() != null ? task.getException().getMessage() : ""),
@@ -88,19 +88,16 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     // ✅ Firestore 저장이 완전히 끝난 후 여기가 실행됨
                     Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-                    navigateToMainActivity();
+                    navigateToLoginActivity();
                 })
 
                 // 6. 저장 실패했을 때 실행되는 콜백
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "데이터 저장 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
-        // 7. .set() 이후 코드는 저장 완료를 기다리지 않고 바로 실행됨
-        //    그래서 Toast, navigateToMainActivity()를 여기 두면 안됨!
     }
 
-    private void navigateToMainActivity() {
+    private void navigateToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
