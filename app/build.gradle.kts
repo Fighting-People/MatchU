@@ -37,6 +37,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation("androidx.activity:activity:1.8.0")
+    implementation("androidx.core:core-ktx:1.12.0")
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -46,4 +48,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Firebase Firestore 크래시 해결
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }

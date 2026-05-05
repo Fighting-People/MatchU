@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show();
 
-                        navigateToLoginActivity();
+
                     } else {
                         Toast.makeText(this,
                                 "회원가입 실패: " + (task.getException() != null ? task.getException().getMessage() : ""),
@@ -80,15 +80,15 @@ public class RegisterActivity extends AppCompatActivity {
         user.put("email", email);
         user.put("uid", uid);  // UID도 함께 저장 (나중에 조회할 때 필요)
 
-        firestore.collection("users")
-                .document(uid)   // 3. 문서 ID를 UID로 지정 (.add()는 랜덤 ID)
-                .set(user)       // 4. 데이터 저장 요청 (여기서 네트워크 통신 시작)
-
-                // 5. 저장 완료됐을 때 실행되는 콜백 (기다리는 부분)
+        firestore.collection("Users")
+                .document(uid)
+                .set(user)
                 .addOnSuccessListener(aVoid -> {
-                    // ✅ Firestore 저장이 완전히 끝난 후 여기가 실행됨
-                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-                    navigateToLoginActivity();
+                    Log.d("Firestore", "기초 정보 저장 완료");
+                    // ✅ 저장 성공 후 여기서 화면 이동
+                    Intent intent = new Intent(RegisterActivity.this, UserProfileActivity.class);
+                    startActivity(intent);
+                    finish();
                 })
 
                 // 6. 저장 실패했을 때 실행되는 콜백
