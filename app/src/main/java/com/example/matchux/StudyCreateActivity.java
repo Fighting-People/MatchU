@@ -1,16 +1,14 @@
         package com.example.matchux;
-        import com.google.firebase.firestore.FirebaseFirestore;
 
         import android.os.Bundle;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.Toast;
 
-        import androidx.activity.EdgeToEdge;
         import androidx.appcompat.app.AppCompatActivity;
-        import androidx.core.graphics.Insets;
-        import androidx.core.view.ViewCompat;
-        import androidx.core.view.WindowInsetsCompat;
+
+        import com.example.helloandroid.R;
+        import com.google.firebase.firestore.FirebaseFirestore;
 
         public class StudyCreateActivity extends AppCompatActivity {
 
