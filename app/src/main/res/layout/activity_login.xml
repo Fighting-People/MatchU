@@ -7,49 +7,61 @@
     android:padding="24dp"
     tools:context=".MainActivity">
 
-    <!-- 이메일 입력창 -->
-    <EditText
-        android:id="@+id/EmailAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/matchu_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 비밀번호 입력창 -->
+    <EditText
+        android:id="@+id/EmailAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="아이디"
+        android:textColorHint="#BCBCBC"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage" />
+
     <EditText
         android:id="@+id/Password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="비밀번호"
+        android:textColorHint="#BCBCBC"
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
 
-    <!-- 로그인 버튼 -->
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:backgroundTint="#87CEEB"
         android:text="로그인"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
 
-    <!-- 회원가입 버튼 -->
     <Button
         android:id="@+id/button2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:backgroundTint="#87CEEB"
         android:text="회원가입"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
