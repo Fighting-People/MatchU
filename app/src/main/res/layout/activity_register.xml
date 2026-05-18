@@ -7,7 +7,6 @@
     android:padding="24dp"
     tools:context=".RegisterActivity">
 
-    <!-- 뒤로가기 버튼 변수명 원래대로 imageButton 유지 -->
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="48dp"
@@ -70,7 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-    <!-- 회원가입 버튼 변수명 유지 + 색상만 변경 -->
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="0dp"
