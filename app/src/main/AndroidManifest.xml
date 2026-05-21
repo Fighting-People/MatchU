@@ -17,11 +17,15 @@
             android:name=".StudyHomeActivity"
             android:exported="false" />
         <activity
+            android:name=".list_item_study.xml"
+            android:exported="false"
+            android:label="@string/title_activity_list_item_study.xml"
+            android:theme="@style/Theme.MatchUx" />
+        <activity
             android:name=".StudyCreateActivity"
             android:exported="false" />
-        <activity
-            android:name=".UserProfileActivity"
-            android:exported="false" />
+        <activity android:name=".UserProfileActivity"
+            android:exported="false"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

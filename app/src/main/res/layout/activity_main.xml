@@ -26,45 +26,49 @@
         android:hint="스터디 검색" />
 
     <!-- 가로 스크롤 가능 카테고리 영역 -->
-    <HorizontalScrollView
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
-        android:layout_height="125dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start">
 
-        <!-- 버튼들을 가로로 배치 -->
-        <LinearLayout
+        <Button
+            android:id="@+id/btnAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="4dp"
+            android:text="전체" />
 
-            <!-- 공부 카테고리 -->
-            <Button
-                android:id="@+id/categoryButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공부" />
+        <Button
+            android:id="@+id/categoryButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="공부" />
 
-            <!-- 운동 카테고리 -->
-            <Button
-                android:id="@+id/categoryButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="운동" />
+        <Button
+            android:id="@+id/categoryButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="운동" />
 
-            <!-- 음악 카테고리 -->
-            <Button
-                android:id="@+id/categoryButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="음악" />
+        <Button
+            android:id="@+id/categoryButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="음악" />
 
-            <!-- 게임 카테고리 -->
-            <Button
-                android:id="@+id/categoryButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="게임" />
-        </LinearLayout>
-    </HorizontalScrollView>
+        <Button
+            android:id="@+id/categoryButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="게임" />
+
+    </com.google.android.flexbox.FlexboxLayout>
 
     <!-- 스터디 목록 출력 -->
     <ListView
