@@ -11,19 +11,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
         android:text="MatchU"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="16dp"/>
+        android:textStyle="bold" />
 
     <!-- 검색창 -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="스터디 검색"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:hint="스터디 검색" />
 
     <!-- 가로 스크롤 가능 카테고리 영역 -->
     <HorizontalScrollView
@@ -71,14 +71,14 @@
         android:id="@+id/studyListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <!-- 스터디 생성 버튼 -->
     <Button
         android:id="@+id/createButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="스터디 생성"/>
+        android:text="스터디 생성" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

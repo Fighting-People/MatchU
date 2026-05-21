@@ -14,10 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MatchUx">
         <activity
+            android:name=".StudyHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".StudyCreateActivity"
             android:exported="false" />
-        <activity android:name=".UserProfileActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
