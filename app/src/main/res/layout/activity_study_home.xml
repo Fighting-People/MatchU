@@ -13,16 +13,18 @@
         android:orientation="vertical">
 
         <!-- 스터디 이름 -->
+
+        <!-- 버튼 3개 -->
+
         <TextView
             android:id="@+id/studyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:text="스터디 이름"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:padding="16dp"/>
+            android:textStyle="bold" />
 
-        <!-- 버튼 3개 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

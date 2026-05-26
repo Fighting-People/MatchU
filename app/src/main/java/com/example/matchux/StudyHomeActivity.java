@@ -1,6 +1,5 @@
-package com.example.matchu;
+package com.example.matchux;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +34,7 @@ public class StudyHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_home);
 
+        // 연결
         studyTitle = findViewById(R.id.studyTitle);
 
         postBtn = findViewById(R.id.postBtn);
@@ -47,8 +47,12 @@ public class StudyHomeActivity extends AppCompatActivity {
 
         writeBtn = findViewById(R.id.writeBtn);
 
-        // 스터디 이름
-        studyTitle.setText("알고리즘 스터디");
+        // 전달받은 스터디 이름
+        String title = getIntent().getStringExtra("title");
+
+        if(title != null){
+            studyTitle.setText(title);
+        }
 
         // 게시글 리스트
         postList = new ArrayList<>();
@@ -56,15 +60,24 @@ public class StudyHomeActivity extends AppCompatActivity {
         postList.add(new PostItem("첫 게시글", "안녕하세요"));
         postList.add(new PostItem("공지사항", "스터디 시간 변경"));
 
+        // 어댑터 연결
         adapter = new PostAdapter(postList);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(this)
+        );
+
         recyclerView.setAdapter(adapter);
+
+        // 처음 화면
+        recyclerView.setVisibility(View.VISIBLE);
+        infoLayout.setVisibility(View.GONE);
 
         // 게시글 버튼
         postBtn.setOnClickListener(v -> {
 
             recyclerView.setVisibility(View.VISIBLE);
+
             infoLayout.setVisibility(View.GONE);
 
         });
@@ -72,12 +85,7 @@ public class StudyHomeActivity extends AppCompatActivity {
         // 일정 버튼
         scheduleBtn.setOnClickListener(v -> {
 
-            Intent intent = new Intent(
-                    StudyHomeActivity.this,
-                    ScheduleActivity.class
-            );
-
-            startActivity(intent);
+            // 나중에 ScheduleActivity 연결 예정
 
         });
 
@@ -85,6 +93,7 @@ public class StudyHomeActivity extends AppCompatActivity {
         infoBtn.setOnClickListener(v -> {
 
             recyclerView.setVisibility(View.GONE);
+
             infoLayout.setVisibility(View.VISIBLE);
 
         });
@@ -92,12 +101,7 @@ public class StudyHomeActivity extends AppCompatActivity {
         // 게시글 작성 버튼
         writeBtn.setOnClickListener(v -> {
 
-            Intent intent = new Intent(
-                    StudyHomeActivity.this,
-                    WritePostActivity.class
-            );
-
-            startActivity(intent);
+            // 나중에 WritePostActivity 연결 예정
 
         });
 
