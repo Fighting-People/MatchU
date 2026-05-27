@@ -5,117 +5,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FAFAFA"
     tools:context=".MainActivity">
 
-    <!-- 앱 제목 -->
     <ImageView
+        android:id="@+id/logoImage"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
         android:src="@drawable/logo_matchu"
-        android:scaleType="fitCenter"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_gravity="center"/>
+        android:scaleType="fitCenter"/>
 
-    <!-- 스터디 검색 창 -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="12dp"
-        android:background="@android:drawable/editbox_background"
+        android:layout_height="wrap_content"
         android:hint="스터디 검색"
-        android:paddingLeft="15dp"
-        android:textSize="16sp"/>
+        android:layout_margin="10dp"/>
 
-    <!-- 가로 카테고리, (크기,배열 수정) -->
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_marginBottom="10dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:orientation="horizontal">
 
-            <!-- 카테고리 버튼들 android:backgroundTint="#87CEEB" 색깔 변경 -->
             <Button
                 android:id="@+id/categoryButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="공부"
-                android:textStyle="bold"
-                android:layout_marginRight="8dp"
-                android:backgroundTint="#87CEEB"
-                android:textColor="#FFFFFF" />
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#87CEED"
+                android:text="공부" />
 
             <Button
                 android:id="@+id/categoryButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="운동"
-                android:textStyle="bold"
-                android:layout_marginRight="8dp"
-                android:backgroundTint="#87CEEB"
-                android:textColor="#FFFFFF" />
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#87CEED"
+                android:text="운동" />
 
             <Button
                 android:id="@+id/categoryButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="음악"
-                android:textStyle="bold"
-                android:layout_marginRight="8dp"
-                android:backgroundTint="#87CEEB"
-                android:textColor="#FFFFFF" />
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#87CEED"
+                android:text="음악" />
 
             <Button
                 android:id="@+id/categoryButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="게임"
-                android:textStyle="bold"
-                android:backgroundTint="#87CEEB"
-                android:textColor="#FFFFFF" />
+                android:backgroundTint="#87CEED"
+                android:text="게임" />
         </LinearLayout>
     </HorizontalScrollView>
 
-    <!-- 스터디 목록 -->
     <ListView
         android:id="@+id/studyListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="#EEEEEE"
-        android:dividerHeight="1dp"
-        android:layout_marginHorizontal="16dp"/>
+        android:layout_weight="1"/>
 
-    <!-- 스터디 생성 버튼 색깔 변경 -->
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="#87CEED"
+        android:text="스터디 생성"/>
 
-    <!-- 하단 3개의 카테고리 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        app:menu="@menu/bottom_nav_menu" >
-
-        <Button
-            android:id="@+id/createButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_margin="16dp"
-            android:backgroundTint="#87CEEB"
-            android:text="스터디 생성"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/bottom_nav_menu" />
 
 </LinearLayout>
