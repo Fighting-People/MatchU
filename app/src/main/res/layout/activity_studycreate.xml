@@ -1,56 +1,82 @@
-<!-- activity_study_create.xml -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:padding="20dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".StudyCreateActivity">
 
-    <!-- 스터디 생성 배너 -->
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:text="스터디 생성"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-    <!-- 스터디 이름 입력 -->
     <EditText
         android:id="@+id/StudyName"
         android:hint="스터디 이름"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:paddingStart="10dp"
+        android:layout_marginBottom="16dp"/>
 
-    <!-- 카테고리 입력 -->
-    <EditText
-        android:id="@+id/Category"
-        android:hint="카테고리"
+    <TextView
+        android:id="@+id/spinnerCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="카테고리 선택 (중복 가능)"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="16dp"
 
-    <!-- 스터디 설명 입력 -->
+        android:drawableEnd="@android:drawable/arrow_down_float"
+        android:drawablePadding="10dp"
+        android:drawableTint="#000000"
 
-    <!-- 최대 인원 입력 -->
+        android:background="@drawable/category_spinner_border" />
+
     <EditText
         android:id="@+id/Description"
         android:layout_width="match_parent"
-        android:layout_height="281dp"
-        android:hint="설명" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="설명"
+        android:gravity="top|start"
+        android:background="@drawable/edittext_border"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="16dp" />
 
     <EditText
         android:id="@+id/SetMaxPeople"
-        android:hint="최대 인원"
+        android:hint="최대 인원(명)"
         android:inputType="number"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:paddingStart="10dp"
+        android:layout_marginBottom="24dp"/>
 
-    <!-- 스터디 생성 버튼 -->
     <Button
         android:id="@+id/btnCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#87CEEB"
+        android:textSize="24sp"
         android:text="스터디 생성" />
 </LinearLayout>
