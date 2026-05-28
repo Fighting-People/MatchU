@@ -29,73 +29,24 @@
         android:layout_marginBottom="16dp"/>
 
     <TextView
+        android:id="@+id/spinnerCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="카테고리 선택 (중복 가능)"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_marginBottom="8dp"
-        android:paddingStart="4dp"/>
+        android:minHeight="48dp"
+        android:hint="카테고리 선택 (중복 가능)"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="16dp"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+        android:drawableEnd="@android:drawable/arrow_down_float"
+        android:drawablePadding="10dp"
+        android:drawableTint="#000000"
 
-        <CheckBox
-            android:id="@+id/checkboxIT"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="IT/개발"
-            android:textSize="16sp" />
-
-        <CheckBox
-            android:id="@+id/checkboxLanguage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="어학/외국어"
-            android:textSize="16sp" />
-
-        <CheckBox
-            android:id="@+id/checkboxDesign"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="디자인"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
-
-        <CheckBox
-            android:id="@+id/checkboxInterview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="면접/취업"
-            android:textSize="16sp" />
-
-        <CheckBox
-            android:id="@+id/checkboxHobby"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="취미/교양"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
+        android:background="@drawable/category_spinner_border" />
 
     <EditText
         android:id="@+id/Description"
@@ -113,7 +64,7 @@
 
     <EditText
         android:id="@+id/SetMaxPeople"
-        android:hint="최대 인원"
+        android:hint="최대 인원(명)"
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
