@@ -8,7 +8,6 @@ public class Study {
     public int maxMember;
     public String studyDescription;
     public String studyTitle;
-    public String title;
 
     public Study() {}
 
