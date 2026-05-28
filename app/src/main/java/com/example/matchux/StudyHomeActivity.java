@@ -26,6 +26,8 @@ public class StudyHomeActivity extends AppCompatActivity {
 
     FloatingActionButton writeBtn;
 
+    FloatingActionButton chatBtn;
+
     ArrayList<PostItem> postList;
     PostAdapter adapter;
 
@@ -95,6 +97,13 @@ public class StudyHomeActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.GONE);
 
             infoLayout.setVisibility(View.VISIBLE);
+
+        });
+
+        //채팅창 버튼
+         chatBtn.setOnClickListener(v -> {
+
+            // 나중에 ChatActivity 연결 예정
 
         });
 
