@@ -1,4 +1,4 @@
-package com.example.matchux;
+package com.example.matchux.post;
 
 public class PostItem {
 

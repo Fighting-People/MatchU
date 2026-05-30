@@ -14,20 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MatchUx">
         <activity
-            android:name=".StudyHomeActivity"
+            android:name=".study.StudyHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".list_item_study.xml"
-            android:exported="false"
-            android:label="@string/title_activity_list_item_study.xml"
-            android:theme="@style/Theme.MatchUx" />
-        <activity
-            android:name=".StudyCreateActivity"
+            android:name=".study.StudyCreateActivity"
             android:exported="false" />
-        <activity android:name=".UserProfileActivity"
+        <activity android:name=".profile.UserProfileActivity"
             android:exported="false"/>
         <activity
-            android:name=".LoginActivity"
+            android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,10 +31,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".auth.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.ProfileActivity"
             android:exported="false" />
     </application>
 

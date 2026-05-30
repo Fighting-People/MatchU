@@ -1,4 +1,4 @@
-package com.example.matchux;
+package com.example.matchux.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.matchux.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -14,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProfileActivity extends AppCompatActivity {
 
     TextView tvNickname, tvEmail, tvBirthdate, tvSex, tvInterests;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +32,19 @@ public class ProfileActivity extends AppCompatActivity {
         // Firestore에서 데이터 불러오기
         loadUserProfile();
 
-        // 하단 네비게이션
+        // 6. 하단 네비게이션 바 세팅
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
-        bottomNav.setSelectedItemId(R.id.nav_profile);
+        bottomNav.setSelectedItemId(R.id.nav_home);
+
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
-                startActivity(new Intent(this, MainActivity.class));
                 return true;
             } else if (id == R.id.nav_my_meeting) {
-                startActivity(new Intent(this, MyMeetingActivity.class));
-                return true;
+                // startActivity(new Intent(this, MyMeetingActivity.class));
+                // return true;
             } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
                 return true;
             }
             return false;

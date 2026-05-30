@@ -1,4 +1,4 @@
-package com.example.matchux;
+package com.example.matchux.study;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.matchux.R;
+import com.example.matchux.post.PostAdapter;
+import com.example.matchux.post.PostItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

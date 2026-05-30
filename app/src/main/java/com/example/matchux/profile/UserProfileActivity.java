@@ -1,4 +1,4 @@
-package com.example.matchux;
+package com.example.matchux.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.helloandroid.R;
+import com.example.matchux.MainActivity;
+import com.example.matchux.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 

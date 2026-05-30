@@ -1,13 +1,5 @@
 package com.example.matchux;
 
-<<<<<<< HEAD
-import com.example.helloandroid.R;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
-
-=======
->>>>>>> 681169ae605b5bdc1a02f9ff0849fcfab5edf1f0
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,6 +8,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.matchux.profile.ProfileActivity;
+import com.example.matchux.study.Study;
+import com.example.matchux.study.StudyAdapter;
+import com.example.matchux.study.StudyCreateActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -104,13 +100,14 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
                 return true;
             } else if (id == R.id.nav_my_meeting) {
                 // startActivity(new Intent(this, MyMeetingActivity.class));
                 // return true;
             } else if (id == R.id.nav_profile) {
-                // startActivity(new Intent(this, ProfileActivity.class));
-                // return true;
+                 startActivity(new Intent(this, ProfileActivity.class));
+                 return true;
             }
             return false;
         });
