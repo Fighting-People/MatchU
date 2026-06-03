@@ -1,121 +1,118 @@
 package com.example.matchux.study;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.matchux.R;
-import com.example.matchux.post.PostAdapter;
-import com.example.matchux.post.PostItem;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudyHomeActivity extends AppCompatActivity {
 
-    TextView studyTitle;
+    private RecyclerView recyclerView;
+    private StudyAdapter adapter;
+    private List<Study> myStudyList;
 
-    Button postBtn, scheduleBtn, infoBtn;
+    // 🌟 각 스터디 객체와 매칭되는 문서 ID들을 순서대로 저장할 리스트
+    private List<String> studyIdList;
 
-    RecyclerView recyclerView;
-
-    LinearLayout infoLayout;
-
-    FloatingActionButton writeBtn;
-
-    FloatingActionButton chatBtn;
-
-    ArrayList<PostItem> postList;
-    PostAdapter adapter;
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 실제 파일명이 activity_my_meeting 일 때
         setContentView(R.layout.activity_study_home);
 
-        // 연결
-        studyTitle = findViewById(R.id.studyTitle);
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        postBtn = findViewById(R.id.postBtn);
-        scheduleBtn = findViewById(R.id.scheduleBtn);
-        infoBtn = findViewById(R.id.infoBtn);
+        // 1. 리사이클러뷰 및 리스트 초기화
+        recyclerView = findViewById(R.id.recyclerViewMyStudies); // 💡 XML의 리사이클러뷰 ID와 매칭
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerView = findViewById(R.id.recyclerView);
+        myStudyList = new ArrayList<>();
+        studyIdList = new ArrayList<>(); // 문서 ID 저장용 리스트 초기화
 
-        infoLayout = findViewById(R.id.infoLayout);
-
-        writeBtn = findViewById(R.id.writeBtn);
-
-        // 전달받은 스터디 이름
-        String title = getIntent().getStringExtra("title");
-
-        if(title != null){
-            studyTitle.setText(title);
-        }
-
-        // 게시글 리스트
-        postList = new ArrayList<>();
-
-        postList.add(new PostItem("첫 게시글", "안녕하세요"));
-        postList.add(new PostItem("공지사항", "스터디 시간 변경"));
-
-        // 어댑터 연결
-        adapter = new PostAdapter(postList);
-
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(this)
-        );
-
+        adapter = new StudyAdapter(myStudyList);
         recyclerView.setAdapter(adapter);
 
-        // 처음 화면
-        recyclerView.setVisibility(View.VISIBLE);
-        infoLayout.setVisibility(View.GONE);
+        // 2. 🌟 리사이클러뷰 아이템 클릭 이벤트 리스너 설정
+        adapter.setOnItemClickListener(new StudyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Study study, String documentId) {
+                // 클릭한 아이템의 인덱스를 통해 정확한 Firestore 문서 ID를 가져옵니다.
+                int position = myStudyList.indexOf(study);
+                String clickedStudyId = studyIdList.get(position);
 
-        // 게시글 버튼
-        postBtn.setOnClickListener(v -> {
+                // 상세 정보 화면(또는 모임 대시보드)으로 이동
+                Intent intent = new Intent(StudyHomeActivity.this, StudyDetailActivity.class);
 
-            recyclerView.setVisibility(View.VISIBLE);
+                // 중요: 3, 4번 단계(게시물/일정 쿼리)를 위해 고유 문서 ID를 무조건 넘겨줍니다.
+                intent.putExtra("studyId", clickedStudyId);
+                intent.putExtra("studyName", study.getStudyName());
+                intent.putExtra("description", study.getDescription());
+                intent.putExtra("category", study.getCategory());
+                intent.putExtra("maxPeople", study.getMaxPeople());
 
-            infoLayout.setVisibility(View.GONE);
-
+                startActivity(intent);
+            }
         });
 
-        // 일정 버튼
-        scheduleBtn.setOnClickListener(v -> {
+        // 3. 내가 가입한 모임 데이터 로드
+        loadMyStudies();
+    }
 
-            // 나중에 ScheduleActivity 연결 예정
+    private void loadMyStudies() {
+        if (auth.getCurrentUser() == null) {
+            Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        });
+        // 현재 로그인한 사용자의 UID 확보
+        String myUid = auth.getCurrentUser().getUid();
 
-        // 정보 버튼
-        infoBtn.setOnClickListener(v -> {
+        // 🌟 핵심 쿼리: "Study" 컬렉션의 "members" 배열 필드 안에 내 UID가 들어있는 문서만 쏙 필터링
+        db.collection("Study")
+                .whereArrayContains("members", myUid)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        myStudyList.clear();  // 기존 데이터 리셋
+                        studyIdList.clear();  // 기존 ID 리셋
 
-            recyclerView.setVisibility(View.GONE);
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // 1) 문서 ID(랜덤 문자열)를 추출하여 리스트에 순서대로 저장
+                            String studyId = document.getId();
+                            studyIdList.add(studyId);
 
-            infoLayout.setVisibility(View.VISIBLE);
+                            // 2) 문서를 Study 객체 데이터 모델로 전환하여 리스트에 추가
+                            Study study = document.toObject(Study.class);
+                            myStudyList.add(study);
+                        }
 
-        });
+                        // 4. 어댑터에 데이터가 동기화되었음을 알리고 화면을 새로고침
+                        adapter.notifyDataSetChanged();
 
-        //채팅창 버튼
-         chatBtn.setOnClickListener(v -> {
-
-            // 나중에 ChatActivity 연결 예정
-
-        });
-
-        // 게시글 작성 버튼
-        writeBtn.setOnClickListener(v -> {
-
-            // 나중에 WritePostActivity 연결 예정
-
-        });
-
+                        // 참여 중인 모임방이 아예 없을 때의 예외 처리
+                        if (myStudyList.isEmpty()) {
+                            Toast.makeText(StudyHomeActivity.this, "참여 중인 모임이 없습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("FirestoreError", "내 모임 로드 실패: ", task.getException());
+                        Toast.makeText(StudyHomeActivity.this, "데이터를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

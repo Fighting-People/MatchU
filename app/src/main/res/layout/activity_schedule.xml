@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".schedules.ScheduleActivity">
+
+    <EditText
+        android:id="@+id/editTextScheduleTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:hint="일정 제목을 입력하세요"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextScheduleDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="날짜를 입력하세요 (예: 2026-06-04)"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/editTextScheduleTitle"
+        app:layout_constraintStart_toStartOf="@+id/editTextScheduleTitle"
+        app:layout_constraintTop_toBottomOf="@+id/editTextScheduleTitle" />
+
+    <EditText
+        android:id="@+id/editTextScheduleContent"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="24dp"
+        android:hint="상세 내용 및 게시글 본문을 입력하세요"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/editTextScheduleDate"
+        app:layout_constraintStart_toStartOf="@+id/editTextScheduleDate"
+        app:layout_constraintTop_toBottomOf="@+id/editTextScheduleDate" />
+
+    <Button
+        android:id="@+id/buttonSaveSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="일정 등록하기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextScheduleContent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

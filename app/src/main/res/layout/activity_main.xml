@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- 전체 화면 레이아웃 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- 앱 제목 -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +14,6 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- 검색창 -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
@@ -25,7 +21,6 @@
         android:layout_margin="10dp"
         android:hint="스터디 검색" />
 
-    <!-- 가로 스크롤 가능 카테고리 영역 -->
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,14 +65,12 @@
 
     </com.google.android.flexbox.FlexboxLayout>
 
-    <!-- 스터디 목록 출력 -->
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/studyListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- 스터디 생성 버튼 -->
     <Button
         android:id="@+id/createButton"
         android:layout_width="match_parent"

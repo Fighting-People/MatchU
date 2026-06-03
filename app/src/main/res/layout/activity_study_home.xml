@@ -73,9 +73,9 @@
 
         <!-- 게시글 RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewMyStudies"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <!-- 정보 화면 -->
         <LinearLayout

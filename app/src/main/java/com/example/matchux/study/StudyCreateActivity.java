@@ -10,11 +10,16 @@ import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.matchux.R;
+import com.google.firebase.auth.FirebaseAuth; // 🌟 FirebaseAuth 추가
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudyCreateActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance(); // 🌟 Auth 인스턴스 가져오기
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +52,20 @@ public class StudyCreateActivity extends AppCompatActivity {
                 return;
             }
 
+            if (auth.getCurrentUser() == null) {
+                Toast.makeText(this, "로그인 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 🌟 4. 현재 방장(로그인한 유저)의 UID를 리스트에 담기
+            String myUid = auth.getCurrentUser().getUid();
+            List<String> membersList = new ArrayList<>();
+            membersList.add(myUid);
+
             int maxPeople = Integer.parseInt(maxPeopleStr);
 
-            // 선택된 카테고리(selectedCategory)를 넣어서 생성
-            Study study = new Study(selectedCategory, false, maxPeople, Description, StudyName);
+            // 🌟 5. 생성자에 membersList를 추가로 전달하여 객체 생성
+            Study study = new Study(selectedCategory, false, maxPeople, Description, StudyName, membersList);
 
             db.collection("Study")
                     .add(study)
