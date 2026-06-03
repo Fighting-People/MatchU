@@ -54,7 +54,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@android:drawable/ic_menu_myplaces"
-            android:tint="#888888"
             android:contentDescription="프로필 이미지" />
 
         <!-- 닉네임 -->
