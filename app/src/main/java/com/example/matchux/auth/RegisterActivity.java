@@ -1,7 +1,6 @@
-package com.example.matchux;
+package com.example.matchux.auth;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -11,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.matchux.R;
+import com.example.matchux.profile.UserProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 

@@ -1,6 +1,4 @@
-package com.example.matchux;
-
-import android.widget.Toast;
+package com.example.matchux.study;
 
 public class Study {
     public String category;

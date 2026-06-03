@@ -8,6 +8,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.matchux.profile.ProfileActivity;
+import com.example.matchux.study.Study;
+import com.example.matchux.study.StudyAdapter;
+import com.example.matchux.study.StudyCreateActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -96,13 +100,14 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
                 return true;
             } else if (id == R.id.nav_my_meeting) {
                 // startActivity(new Intent(this, MyMeetingActivity.class));
                 // return true;
             } else if (id == R.id.nav_profile) {
-                // startActivity(new Intent(this, ProfileActivity.class));
-                // return true;
+                 startActivity(new Intent(this, ProfileActivity.class));
+                 return true;
             }
             return false;
         });
