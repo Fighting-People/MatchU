@@ -141,7 +141,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@id/writeBtn"
         android:layout_marginBottom="24dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="4dp"
         android:src="@android:drawable/sym_action_chat"
         android:contentDescription="채팅 버튼"
         app:backgroundTint="#87CEEB"
