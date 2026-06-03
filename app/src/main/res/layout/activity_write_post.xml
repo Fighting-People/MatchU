@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- 제목 레이블 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="제목"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="4dp" />
+
+    <!-- ★ id: editTextTitle -->
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="제목을 입력해주세요"
+        android:inputType="text"
+        android:padding="12dp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- 내용 레이블 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내용"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="4dp" />
+
+    <!-- ★ id: editTextContent (layout_weight=1 로 남은 공간 채움) -->
+    <EditText
+        android:id="@+id/editTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="내용을 입력해주세요"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:padding="12dp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- ★ id: buttonSubmit -->
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="게시글 등록"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#6750A4" />
+
+</LinearLayout>

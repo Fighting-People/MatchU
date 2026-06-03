@@ -1,13 +1,5 @@
 package com.example.matchux;
 
-<<<<<<< HEAD
-import com.example.helloandroid.R;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
-
-=======
->>>>>>> 681169ae605b5bdc1a02f9ff0849fcfab5edf1f0
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
