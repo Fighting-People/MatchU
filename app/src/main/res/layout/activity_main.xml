@@ -1,88 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- 전체 화면 레이아웃 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <!-- 앱 제목 -->
-    <TextView
+    <ImageView
+        android:id="@+id/logoImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="MatchU"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/matchu_logo"
+        android:scaleType="fitCenter"/>
 
-    <!-- 검색창 -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="스터디 검색" />
+        android:hint="스터디 검색"
+        android:layout_margin="10dp"/>
 
-    <!-- 가로 스크롤 가능 카테고리 영역 -->
-    <com.google.android.flexbox.FlexboxLayout
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:flexWrap="wrap"
-        app:justifyContent="flex_start">
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none">
 
-        <Button
-            android:id="@+id/btnAll"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="전체" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/categoryButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="공부" />
+            <Button
+                android:id="@+id/categoryButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#87CEED"
+                android:text="공부" />
 
-        <Button
-            android:id="@+id/categoryButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="운동" />
+            <Button
+                android:id="@+id/categoryButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#87CEED"
+                android:text="운동" />
 
-        <Button
-            android:id="@+id/categoryButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="음악" />
+            <Button
+                android:id="@+id/categoryButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#87CEED"
+                android:text="음악" />
 
-        <Button
-            android:id="@+id/categoryButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="게임" />
+            <Button
+                android:id="@+id/categoryButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#87CEED"
+                android:text="게임" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
-    </com.google.android.flexbox.FlexboxLayout>
-
-    <!-- 스터디 목록 출력 -->
     <ListView
         android:id="@+id/studyListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"/>
 
-    <!-- 스터디 생성 버튼 -->
     <Button
         android:id="@+id/createButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="스터디 생성" />
+        android:layout_margin="10dp"
+        android:backgroundTint="#87CEED"
+        android:text="스터디 생성"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
