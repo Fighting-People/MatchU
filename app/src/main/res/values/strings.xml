@@ -1,3 +1,8 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">xml</string>
+=======
+    <string name="app_name">MatchUx</string>
+    <string name="title_activity_list_item_study.xml">list_item_study.xml</string>
+>>>>>>> develop
 </resources>

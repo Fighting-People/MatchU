@@ -13,7 +13,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
         android:padding="8dp"
-        android:src="@drawable/logo_matchu"
+        android:src="@drawable/matchu_logo"
         android:scaleType="fitCenter"/>
 
     <EditText
