@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<<<<<<< HEAD
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/home"
@@ -14,22 +13,3 @@
         android:icon="@drawable/person"
         android:title="프로필" />
 </menu>
-=======
-
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@mipmap/ic_launcher"
-        android:title="홈" />
-
-    <item
-        android:id="@+id/nav_my_meeting"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="내 모임" />
-
-    <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="프로필" />
-
-</menu>
->>>>>>> develop

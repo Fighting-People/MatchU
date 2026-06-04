@@ -7,7 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".profile.UserProfileActivity">
 
-    <!-- 닉네임 입력 -->
+    <!-- 1. 로고 이미지 (수직 체인의 시작) -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/matchu_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNickname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <!-- 2. 닉네임 입력 -->
     <EditText
         android:id="@+id/editTextNickname"
         android:layout_width="0dp"
@@ -16,82 +30,83 @@
         android:layout_marginEnd="32dp"
         android:hint="닉네임을 입력하세요"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage"
         app:layout_constraintBottom_toTopOf="@+id/editTextInterests"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 관심사 입력 (쉼표로 구분, ex: 운동, 독서) -->
+    <!-- 3. 관심사 입력 -->
     <EditText
         android:id="@+id/editTextInterests"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
         android:hint="관심사를 입력하세요 (쉼표로 구분, ex: 운동, 독서)"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNickname"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBirthdate" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextBirthdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 생년월일 입력 (ex: 2000-01-01) -->
+    <!-- 4. 생년월일 입력 -->
     <EditText
         android:id="@+id/editTextBirthdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
         android:hint="생년월일을 입력하세요 (ex: 2000-01-01)"
         android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextInterests"
-        app:layout_constraintBottom_toTopOf="@+id/editTextSex" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextSex"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 성별 입력 (ex: M / F) -->
+    <!-- 5. 성별 입력 -->
     <EditText
         android:id="@+id/editTextSex"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
         android:hint="성별을 입력하세요 (M / F)"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextBirthdate"
-        app:layout_constraintBottom_toTopOf="@+id/editTextMajor" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextMajor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 전공 입력 -->
+    <!-- 6. 전공 입력 -->
     <EditText
         android:id="@+id/editTextMajor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
         android:hint="전공을 입력하세요"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSex"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSave" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 저장 버튼 -->
+    <!-- 7. 정보 저장 버튼 (수직 체인의 끝) -->
     <Button
         android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:text="정보 저장"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#87CEEB"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMajor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMajor" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

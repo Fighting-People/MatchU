@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.matchux.MainActivity;
 import com.example.matchux.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProfileActivity extends AppCompatActivity {
 
     TextView tvNickname, tvEmail, tvBirthdate, tvSex, tvInterests;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +32,22 @@ public class ProfileActivity extends AppCompatActivity {
         // Firestore에서 데이터 불러오기
         loadUserProfile();
 
-        // 6. 하단 네비게이션 바 세팅
+        // 하단 네비게이션 바 세팅 (아이콘 색상 유지 및 ID 매칭 완료)
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
-        bottomNav.setSelectedItemId(R.id.nav_home);
+        bottomNav.setItemIconTintList(null); // 아이콘 원래 모양 유지 코드 추가
+        bottomNav.setSelectedItemId(R.id.nav_profile); // ★ 현재 프로필 화면이므로 프로필 선택 상태로 변경
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
+                // 홈 버튼을 누르면 메인 화면으로 이동
+                startActivity(new Intent(this, MainActivity.class));
                 return true;
-            } else if (id == R.id.nav_my_meeting) {
+            } else if (id == R.id.nav_group) { // ★ nav_my_meeting을 최신 ID인 nav_group으로 변경!
                 // startActivity(new Intent(this, MyMeetingActivity.class));
                 // return true;
             } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(this, ProfileActivity.class));
-                return true;
+                return true; // 현재 프로필 화면이므로 그대로 유지
             }
             return false;
         });

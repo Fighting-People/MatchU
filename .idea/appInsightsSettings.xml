@@ -8,17 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-<<<<<<< HEAD
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
-=======
                   <option name="appId" value="com.example.matchux" />
                   <option name="mobileSdkAppId" value="1:296248666796:android:838f04efacbbd7f08b4d09" />
                   <option name="projectId" value="matchu-a6f4c" />
                   <option name="projectNumber" value="296248666796" />
->>>>>>> develop
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
