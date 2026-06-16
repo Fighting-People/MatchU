@@ -23,7 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="스터디 검색" />
+        android:hint="스터디 검색"
+
+        android:inputType="text"
+
+        android:imeOptions="actionDone"
+
+        android:privateImeOptions="defaultInputmode=korean"/>
 
     <!-- 가로 스크롤 가능 카테고리 영역 -->
     <com.google.android.flexbox.FlexboxLayout
