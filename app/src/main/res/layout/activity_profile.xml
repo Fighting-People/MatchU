@@ -54,7 +54,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@android:drawable/ic_menu_myplaces"
-            android:tint="#888888"
+            app:tint="#888888"
             android:contentDescription="프로필 이미지" />
 
         <!-- 닉네임 -->
@@ -137,12 +137,13 @@
     </LinearLayout>
 
     <!-- 남는 공간 -->
+
+    <!-- 하단 네비게이션 -->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- 하단 네비게이션 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
