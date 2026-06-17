@@ -13,48 +13,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MatchUx">
+
         <activity
             android:name=".study.StudyDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_study_detail"
             android:theme="@style/Theme.MatchUx" />
-        <activity
-            android:name=".activity_schedule.xml"
-            android:exported="false"
-            android:label="@string/title_activity_schedule.xml"
-            android:theme="@style/Theme.MatchUx" />
+
         <activity
             android:name=".schedules.ScheduleActivity"
             android:exported="false"
             android:label="@string/title_activity_schedule"
             android:theme="@style/Theme.MatchUx" />
+
+        <activity
+            android:name=".study.MyStudyActivity"
+            android:exported="false" />
+
         <activity
             android:name=".study.StudyHomeActivity"
             android:exported="false" />
+
         <activity
             android:name=".study.StudyCreateActivity"
             android:exported="false" />
+
         <activity
             android:name=".profile.UserProfileActivity"
             android:exported="false" />
+
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".auth.RegisterActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".profile.ProfileActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>

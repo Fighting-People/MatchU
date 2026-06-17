@@ -1,5 +1,7 @@
 package com.example.matchux.study;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,11 @@ import java.util.List;
 
 public class StudyAdapter extends RecyclerView.Adapter<StudyAdapter.StudyViewHolder> {
 
+    private Context context;
     private List<Study> studyList;
     private OnItemClickListener listener;
 
+    // 인터페이스 정의
     public interface OnItemClickListener {
         void onItemClick(Study study, String documentId);
     }
@@ -25,14 +29,15 @@ public class StudyAdapter extends RecyclerView.Adapter<StudyAdapter.StudyViewHol
         this.listener = listener;
     }
 
-    public StudyAdapter(List<Study> studyList) {
+    // MainActivity 호출 구조에 맞게 Context를 포함한 생성자 정의
+    public StudyAdapter(Context context, List<Study> studyList) {
+        this.context = context;
         this.studyList = studyList;
     }
 
     @NonNull
     @Override
     public StudyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // 💡 중요: 본인의 실제 리스트 한 칸 XML 파일명으로 매칭하세요 (예: study_item)
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_study, parent, false);
         return new StudyViewHolder(view);
     }
@@ -41,10 +46,19 @@ public class StudyAdapter extends RecyclerView.Adapter<StudyAdapter.StudyViewHol
     public void onBindViewHolder(@NonNull StudyViewHolder holder, int position) {
         Study study = studyList.get(position);
 
+        // getter 메서드를 사용하여 데이터 세팅 (필드 직접 접근인 study.category 형태도 가능)
         holder.tvCategory.setText(study.getCategory());
         holder.tvMaxMember.setText("정원: " + study.getMaxPeople() + "명");
         holder.tvTitle.setText(study.getStudyName());
         holder.tvDescription.setText(study.getDescription());
+
+        // [추가] 리사이클러뷰 자체 아이템 클릭 리스너 연결로 StudyHomeActivity 이동 구현
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StudyHomeActivity.class);
+            intent.putExtra("studyId", study.getStudyId());
+            intent.putExtra("title", study.getStudyName());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -52,6 +66,7 @@ public class StudyAdapter extends RecyclerView.Adapter<StudyAdapter.StudyViewHol
         return studyList.size();
     }
 
+    // ViewHolder 정의
     class StudyViewHolder extends RecyclerView.ViewHolder {
         TextView tvCategory, tvMaxMember, tvTitle, tvDescription;
 
@@ -61,18 +76,6 @@ public class StudyAdapter extends RecyclerView.Adapter<StudyAdapter.StudyViewHol
             tvMaxMember = itemView.findViewById(R.id.tvMaxMember);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDescription = itemView.findViewById(R.id.tvDescription);
-
-            // 아이템 뷰 전체 클릭 시 이벤트 발생
-            itemView.setOnClickListener(v -> {
-                int position = getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION && listener != null) {
-                    Study clickedStudy = studyList.get(position);
-
-                    // 🌟 StudyHomeActivity에서 관리하는 index 매칭을 사용하므로,
-                    // 안전하게 객체 정보를 그대로 넘겨 리스너가 ID를 매핑하도록 유도합니다.
-                    listener.onItemClick(clickedStudy, null);
-                }
-            });
         }
     }
 }

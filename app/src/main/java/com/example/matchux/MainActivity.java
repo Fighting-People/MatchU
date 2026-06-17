@@ -6,14 +6,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager; // 🌟 추가
-import androidx.recyclerview.widget.RecyclerView; // 🌟 추가
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.matchux.profile.ProfileActivity;
+import com.example.matchux.study.MyStudyActivity;
 import com.example.matchux.study.Study;
 import com.example.matchux.study.StudyAdapter;
 import com.example.matchux.study.StudyCreateActivity;
-import com.example.matchux.study.StudyHomeActivity; // 🌟 내 모임 창 연결용 추가
+import com.example.matchux.study.StudyHomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,30 +25,25 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Firestore 인스턴스 초기화
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    // 실제 데이터와 어댑터 선언
     List<Study> studyList = new ArrayList<>();
     StudyAdapter adapter;
 
-    // UI 객체 선언
+    // UI 객체 선언 (중복 제거)
     Button btnAll;
     Button createButton;
     Button categoryButton1;
     Button categoryButton2;
     Button categoryButton3;
     Button categoryButton4;
-
-    // 🌟 ListView에서 RecyclerView로 변경
-    RecyclerView studyListView;
+    RecyclerView studyListView; // RecyclerView로 변경 완료
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 1. UI 객체들 ID 연결
+        // UI 컴포넌트 연결
         studyListView = findViewById(R.id.studyListView);
         createButton = findViewById(R.id.createButton);
         btnAll = findViewById(R.id.btnAll);
@@ -56,22 +52,22 @@ public class MainActivity extends AppCompatActivity {
         categoryButton3 = findViewById(R.id.categoryButton3);
         categoryButton4 = findViewById(R.id.categoryButton4);
 
-        // 🌟 2. 리사이클러뷰 필수 세팅: LayoutManager 지정 및 어댑터 연결
+        // 리사이클러뷰 세팅
         studyListView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new StudyAdapter(studyList);
+
+        // 기존에 생성자 인자 개수가 어떻게 정의되었는지에 맞춰 호출 (보통 context와 list 전달)
+        adapter = new StudyAdapter(this, studyList);
         studyListView.setAdapter(adapter);
 
-        // 3. 앱 실행 시 최초 1회 전체 데이터 가져오기
+        // 초기 데이터 로드
         getStudiesFromFirestore(null);
 
-        // 4. 스터디 생성 버튼 클릭 이벤트
-        createButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudyCreateActivity.class));
-        });
+        // 스터디 생성 버튼 클릭
+        createButton.setOnClickListener(v -> startActivity(new Intent(this, StudyCreateActivity.class)));
 
-        // 5. 카테고리 버튼 클릭 이벤트 세팅
+        // 카테고리 버튼 클릭 이벤트 세팅
         btnAll.setOnClickListener(v -> {
-            getStudiesFromFirestore(null); // 필터 없이 전부 가져오기
+            getStudiesFromFirestore(null);
             Toast.makeText(this, "전체 목록을 보여줍니다.", Toast.LENGTH_SHORT).show();
         });
 
@@ -95,32 +91,34 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "게임 카테고리", Toast.LENGTH_SHORT).show();
         });
 
-        // 6. 하단 네비게이션 바 세팅
+        // 하단 네비게이션 바 세팅 및 리스너 등록
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setSelectedItemId(R.id.nav_home);
 
         bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                // 현재 화면이 메인이므로 다시 띄울 필요 없이 주석 처리하거나 유지
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
                 return true;
-            } else if (id == R.id.nav_my_meeting) {
-                // 🌟 2번 단계에서 만든 '내 모임 창(StudyHomeActivity)'으로 이동 연동!
-                startActivity(new Intent(this, StudyHomeActivity.class));
+            } else if (itemId == R.id.nav_my_meeting) {
+                // 내 모임 리스트 화면(MyStudyActivity)으로 부드럽게 이동
+                startActivity(new Intent(this, MyStudyActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
-            } else if (id == R.id.nav_profile) {
+            } else if (itemId == R.id.nav_profile) {
+                // 프로필 화면으로 부드럽게 이동
                 startActivity(new Intent(this, ProfileActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             }
             return false;
-        });
-    } // onCreate 끝
+        }); // 👈 꼬여있던 세미콜론과 괄호 정비 완료
+    }
 
-    // Firestore 연동 데이터 획득 메서드
-    // Firestore 연동 데이터 획득 메서드
+    // Firestore 데이터 획득 메서드
     private void getStudiesFromFirestore(String categoryName) {
         Query query = db.collection("Study");
-
         if (categoryName != null) {
             query = query.whereEqualTo("category", categoryName);
         }
@@ -130,19 +128,20 @@ public class MainActivity extends AppCompatActivity {
             for (DocumentSnapshot doc : queryDocumentSnapshots) {
                 Study study = doc.toObject(Study.class);
                 if (study != null) {
+                    study.studyId = doc.getId();
                     studyList.add(study);
                 }
             }
             adapter.notifyDataSetChanged();
         }).addOnFailureListener(e -> {
-            Toast.makeText(MainActivity.this, "에러 발생: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }); // 👈 여기서 소괄호와 중괄호가 온전하게 닫혀야 합니다.
-    } // 👈 getStudiesFromFirestore 메서드를 닫는 중괄호
+            Toast.makeText(MainActivity.this, "에러: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // 화면으로 돌아올 때마다 데이터를 최신으로 새로고침함
+        // 화면으로 돌아올 때마다 데이터 새로고침
         getStudiesFromFirestore(null);
     }
-} // 👈 !!! 중요 !!! MainActivity 클래스 전체를 닫는 최외곽 중괄호
+}

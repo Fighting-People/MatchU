@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.matchux.R;
-import com.google.firebase.auth.FirebaseAuth; // 🌟 FirebaseAuth 추가
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
 public class StudyCreateActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth auth = FirebaseAuth.getInstance(); // 🌟 Auth 인스턴스 가져오기
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +57,16 @@ public class StudyCreateActivity extends AppCompatActivity {
                 return;
             }
 
-            // 🌟 4. 현재 방장(로그인한 유저)의 UID를 리스트에 담기
+            // 4. 현재 생성하는 유저(방장)의 UID를 참여 멤버 리스트에 첫 번째로 추가
             String myUid = auth.getCurrentUser().getUid();
             List<String> membersList = new ArrayList<>();
             membersList.add(myUid);
 
             int maxPeople = Integer.parseInt(maxPeopleStr);
 
-            // 🌟 5. 생성자에 membersList를 추가로 전달하여 객체 생성
-            Study study = new Study(selectedCategory, false, maxPeople, Description, StudyName, membersList);
+            // [수정] 통일된 Study 생성자 규격(총 7개 인자)에 완벽하게 매칭
+            // 처음 생성할 때는 문서 ID가 없으므로 첫 인자에 null을 넘깁니다.
+            Study study = new Study(null, selectedCategory, false, maxPeople, Description, StudyName, membersList);
 
             db.collection("Study")
                     .add(study)
