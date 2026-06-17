@@ -50,7 +50,7 @@ public class StudyCreateActivity extends AppCompatActivity {
             int maxPeople = Integer.parseInt(maxPeopleStr);
 
             // 선택된 카테고리(selectedCategory)를 넣어서 생성
-            Study study = new Study(selectedCategory, false, maxPeople, Description, StudyName);
+            Study study = new Study(null, selectedCategory, false, maxPeople, Description, StudyName, null);
 
             db.collection("Study")
                     .add(study)

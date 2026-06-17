@@ -14,13 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MatchUx">
         <activity
+            android:name=".study.MyStudyActivity"
+            android:exported="false" />
+        <activity
             android:name=".study.StudyHomeActivity"
             android:exported="false" />
         <activity
             android:name=".study.StudyCreateActivity"
             android:exported="false" />
-        <activity android:name=".profile.UserProfileActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".profile.UserProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true">

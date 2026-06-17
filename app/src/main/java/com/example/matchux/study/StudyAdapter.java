@@ -38,7 +38,7 @@ public class StudyAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // 1. 새로 만든 커스텀 레이아웃(list_item_study)을 적용합니다.
+        // 1. 커스텀 레이아웃 적용
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item_study, parent, false);
@@ -47,17 +47,17 @@ public class StudyAdapter extends BaseAdapter {
         // 2. 현재 순서에 맞는 데이터 획득
         Study study = studyList.get(position);
 
-        // 3. 커스텀 레이아웃 안의 컴포넌트들과 아이디 연결
-        TextView tvCategory = convertView.findViewById(R.id.tvCategory);
+        // 3. 커스텀 레이아웃 안의 컴포넌트들과 아이디 연결 (이 부분이 누락되었는지 확인하세요)
+        TextView tvCategory = convertView.findViewById(R.id.tvCategory); // <-- 이 줄이 정확히 있는지 확인!
         TextView tvMaxMember = convertView.findViewById(R.id.tvMaxMember);
         TextView tvTitle = convertView.findViewById(R.id.tvTitle);
         TextView tvDescription = convertView.findViewById(R.id.tvDescription);
 
-        // 4. 데이터 반영
+        // 4. 데이터 반영 (이전 단계에서 수정한 필드명 적용)
         tvCategory.setText(study.category);
-        tvMaxMember.setText("정원: " + study.maxMember + "명");
-        tvTitle.setText(study.studyTitle);
-        tvDescription.setText(study.studyDescription);
+        tvMaxMember.setText("정원: " + study.maxPeople + "명");
+        tvTitle.setText(study.studyName);
+        tvDescription.setText(study.description);
 
         return convertView;
     }
