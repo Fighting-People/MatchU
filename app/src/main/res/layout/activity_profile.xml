@@ -10,18 +10,17 @@
     <!-- 상단 툴바 -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="64dp"
         android:background="#FFFFFF"
         android:gravity="center_vertical"
-        android:paddingHorizontal="16dp">
-
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            android:contentDescription="뒤로가기" />
+        android:paddingHorizontal="20dp"> <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerVertical="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_back"
+        android:contentDescription="뒤로가기" />
 
         <TextView
             android:layout_width="wrap_content"
