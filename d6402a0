@@ -1,0 +1,57 @@
+[33me5507c6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m, [m[1;31morigin/minjae[m[33m, [m[1;32mminjae[m[33m)[m xml 찐완료
+[33m079db2d[m xml 최종
+[33mdc617be[m user_profile.xml
+[33m83b6677[m Merge branch 'develop' of https://github.com/Fighting-People/MatchU into develop
+[33md6402a0[m[33m ([m[1;31morigin/develop[m[33m)[m activity_study_home.xml 수정(4) 1. 뷰아이디 java와 일치하게 수정 2. 빌드: gradle 버전 기존 8.1.0에서 8.2로 올리니 제대로 됨
+[33m1fd5129[m Merge branch 'develop' into jw
+[33mda6d6dd[m activity_main.xml 수정
+[33m83e96e2[m profile수정본
+[33m7f945cf[m pull
+[33m9181ead[m activity_study_home.xml 수정(3) 1. 채팅 버튼과 추가 버튼 사이 공간 수정 안되어서 다시 적용해서 푸쉬
+[33mb5108d7[m activity_study_home.xml 수정(2) 1. 채팅 버튼과 추가 버튼 사이 공간 수정 2. 스터디 이름 및 아이템의 배치 조절
+[33mb791fb2[m activity_study_home.xml 수정(1) 1. 버튼 색 #87CEEB으로 수정 2. 버튼 모양 둥근 직사각형 모양으로 수정 3. 버튼 배열 간격 '4dp'로 수정
+[33m37d1870[m 패키지 정리완료
+[33m1a02153[m 12주차 merge
+[33m701a6f8[m Merge remote-tracking branch 'origin/jw' into develop
+[33m91f19a8[m 지환이꺼 merge완료
+[33m362408e[m create WritePostAcitivy
+[33m416e3a1[m[33m ([m[1;31morigin/YYG[m[33m, [m[1;32mYYG[m[33m)[m StudyHomeActivity 완성(Post,Schedule연결만)
+[33mc762e3d[m activity_studycreate.xml 수정 - 6(최최종) 1. 내용 수정
+[33me5747b7[m Merge branch 'develop' into jw
+[33m5227422[m activity_studycreate.xml 수정 - 5(최종) 1. 카테고리 선택칸을 스피너로 변경 2. 스피너 관련된 xml을 drawable에 저장
+[33mf892f93[m[33m ([m[1;31morigin/minjae-profile[m[33m)[m ProfileActivity 완료
+[33madd4b44[m main화면
+[33mac9100d[m UI 복구 완료
+[33m3dcf87a[m activity_studycreate.xml 수정 - 4 (미완성) 1. 체크 박스 형태에 내용 미리 넣어봄
+[33mb4f7765[m activity_studycreate.xml 변경 - 3 1. '설명' 칸에 여백 미설정 하여 10dp로 수정
+[33md758d22[m activity_studycreate.xml 변경 - 2 1. res-drawable폴더에 edittext_border.xml 파일 추가 -> 설명 칸에 테두리 추가
+[33m49d0871[m activity_studycreate.xml 변경 - 1 1. padding - 10dp 추가 2. 버튼 색 #87CEEB 수정
+[33me1a41f2[m activity_login.xml 변경 - 1 1. padding - 10dp로 추가
+[33mbd0c7a3[m activity_Register.xml 변경 - 2 1. padding - 10dp로 추가
+[33m26263a9[m StudyHome완성중
+[33mc8cc048[m StudyHomeActivity완성
+[33m681169a[m 용윤이꺼 merge
+[33me8489d4[m 지웅이꺼 커밋
+[33m0c84df8[m activity_Register.xml 변경 - 2 1. 주석 제거
+[33mcb1311b[m activity_register.xml 변경 - 1 1. 회원가입 버튼 색상 로그인과 동일하게 #87CEEB 색상으로 변경 2. 전체 여백 로그인창과 동일하게 여백 조정 3. 뒤로가기 버튼 강제 위치가 조정되어 있어서 제약 조건 최소화 및 자연스럽게 조정 4. 입력 필드의 글씨 색상을 로그인창과 동일하게 android:textColorHint="#BCBCBC"로 조정 5. 잘못된 ID 삭제: android:id="@+id/backButton"
+[33mbb20725[m 카테고리 설정 방법 변경, 카테고리 별 스터디 확인 기능 추가
+[33m4959a6d[m pull test
+[33ma5918c8[m activity_login.xml 1. 아이디와 비밀번호 입력 칸에 '아이디', '비밀번호' 를 android:hint="아이디", android:hint="비밀번호" 옅은 회색글씨로 가이드 제시 2. 버튼 색상 하늘색으로 변경 3. 로그인 창에 프로젝트 로고 삽입
+[33mf3fd640[m activity_login.xml 1. 버튼 크기 조정 2. 여백 조정
+[33m444c89b[m Create new Branch - jw Testing commit & push
+[33m27b8015[m Create new Branch - jw Testing commit & push
+[33m7e5c85c[m aaa
+[33m70ab107[m Merge branch 'jihwan' of github.com:Fighting-People/MatchU into jihwan
+[33m70d10d4[m merge
+[33m987000b[m 지환 브랜치 생성
+[33med57106[m UserInfo-Merge
+[33mc390d3f[m 9주차 최종
+[33m8e0f1d8[m backup
+[33md714563[m 유저정보입력 기능 추가
+[33mbac5f73[m 스터디생성추가
+[33m7f30496[m 네비게이션 추가:
+[33m35669d4[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m mainActivity 추가
+[33mceccfe6[m 카테고리별 리스트뷰 추가
+[33m5f26478[m main화면 추가
+[33m4cce321[m 회원가입 뒤로가기 버튼 추가
+[33m637b204[m 회원가입/로그인 기능 구현
