@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- 상단 툴바 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:paddingHorizontal="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="뒤로가기" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="프로필 수정"
+            android:textColor="#222222"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- 구분선 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E5E5E5" />
+
+    <!-- 입력 폼 영역 (스크롤 가능) -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- 닉네임 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="닉네임"
+                android:textSize="13sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/editNickname"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="닉네임을 입력하세요"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 생년월일 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="생년월일"
+                android:textSize="13sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/editBirthdate"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="예: 2000-01-01"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 성별 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="성별"
+                android:textSize="13sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/editSex"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="M / F"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 전공 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="전공"
+                android:textSize="13sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/editMajor"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="전공을 입력하세요"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 관심사 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="관심사"
+                android:textSize="13sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/editInterests"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="쉼표로 구분 (예: 운동, 독서, 코딩)"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="24dp" />
+
+            <!-- 저장 버튼 -->
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="저장하기"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:backgroundTint="#87CEEB" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
