@@ -7,7 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".profile.UserProfileActivity">
 
+<<<<<<< Updated upstream
     <!-- 1. 로고 이미지 (수직 체인의 시작) -->
+=======
+>>>>>>> Stashed changes
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="match_parent"
@@ -21,7 +24,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_chainStyle="spread" />
 
+<<<<<<< Updated upstream
     <!-- 2. 닉네임 입력 -->
+=======
+>>>>>>> Stashed changes
     <EditText
         android:id="@+id/editTextNickname"
         android:layout_width="0dp"
@@ -30,12 +36,20 @@
         android:layout_marginEnd="32dp"
         android:hint="닉네임을 입력하세요"
         android:inputType="text"
+<<<<<<< Updated upstream
+=======
+        android:imeOptions="actionNext"
+        android:privateImeOptions="defaultInputmode=korean"
+>>>>>>> Stashed changes
         app:layout_constraintTop_toBottomOf="@+id/logoImage"
         app:layout_constraintBottom_toTopOf="@+id/editTextInterests"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
     <!-- 3. 관심사 입력 -->
+=======
+>>>>>>> Stashed changes
     <EditText
         android:id="@+id/editTextInterests"
         android:layout_width="0dp"
@@ -44,6 +58,11 @@
         android:layout_marginEnd="32dp"
         android:hint="관심사를 입력하세요 (쉼표로 구분, ex: 운동, 독서)"
         android:inputType="text"
+<<<<<<< Updated upstream
+=======
+        android:imeOptions="actionNext"
+        android:privateImeOptions="defaultInputmode=korean"
+>>>>>>> Stashed changes
         app:layout_constraintTop_toBottomOf="@+id/editTextNickname"
         app:layout_constraintBottom_toTopOf="@+id/editTextBirthdate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,12 +77,19 @@
         android:layout_marginEnd="32dp"
         android:hint="생년월일을 입력하세요 (ex: 2000-01-01)"
         android:inputType="date"
+<<<<<<< Updated upstream
+=======
+        android:imeOptions="actionNext"
+>>>>>>> Stashed changes
         app:layout_constraintTop_toBottomOf="@+id/editTextInterests"
         app:layout_constraintBottom_toTopOf="@+id/editTextSex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
     <!-- 5. 성별 입력 -->
+=======
+>>>>>>> Stashed changes
     <EditText
         android:id="@+id/editTextSex"
         android:layout_width="0dp"
@@ -72,12 +98,20 @@
         android:layout_marginEnd="32dp"
         android:hint="성별을 입력하세요 (M / F)"
         android:inputType="text"
+<<<<<<< Updated upstream
+=======
+        android:imeOptions="actionNext"
+        android:privateImeOptions="defaultInputmode=korean"
+>>>>>>> Stashed changes
         app:layout_constraintTop_toBottomOf="@+id/editTextBirthdate"
         app:layout_constraintBottom_toTopOf="@+id/editTextMajor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
     <!-- 6. 전공 입력 -->
+=======
+>>>>>>> Stashed changes
     <EditText
         android:id="@+id/editTextMajor"
         android:layout_width="0dp"
@@ -86,12 +120,20 @@
         android:layout_marginEnd="32dp"
         android:hint="전공을 입력하세요"
         android:inputType="text"
+<<<<<<< Updated upstream
+=======
+        android:imeOptions="actionDone"
+        android:privateImeOptions="defaultInputmode=korean"
+>>>>>>> Stashed changes
         app:layout_constraintTop_toBottomOf="@+id/editTextSex"
         app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
     <!-- 7. 정보 저장 버튼 (수직 체인의 끝) -->
+=======
+>>>>>>> Stashed changes
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="0dp"
