@@ -8,29 +8,41 @@
     android:background="#F5F5F5">
 
     <!-- 상단 툴바 -->
-    <RelativeLayout
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#FFFFFF"
+        android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingHorizontal="20dp"> <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_centerVertical="true"
-        android:padding="4dp"
-        android:src="@drawable/ic_back"
-        android:contentDescription="뒤로가기" />
+        android:paddingHorizontal="20dp">
+
+        <ImageButton
+            android:id="@+id/btnBack4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="#00FFFFFF"
+            android:scaleType="centerInside"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="뒤로가기" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textViewTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="내 프로필"
             android:textColor="#222222"
             android:textSize="20sp"
             android:textStyle="bold" />
-    </RelativeLayout>
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
 
     <!-- 구분선 -->
     <View

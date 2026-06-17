@@ -3,6 +3,7 @@ package com.example.matchux.study;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,11 @@ public class StudyCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studycreate);
+
+        ImageButton btnBack = findViewById(R.id.btnBack3);
+        btnBack.setOnClickListener(v -> {
+
+        });
 
         // 1. 카테고리 목록 정의
         String[] categories = {"공부", "운동", "음악", "게임"};

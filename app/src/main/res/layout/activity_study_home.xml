@@ -17,14 +17,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="16dp"
             android:paddingTop="40dp"
             android:paddingBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/btnBack2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="#00FFFFFF"
+                android:scaleType="centerInside"
+                android:padding="8dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="뒤로가기" />
 
             <TextView
                 android:id="@+id/studyTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text="스터디 이름"
                 android:textColor="#212121"
                 android:textSize="24sp"
