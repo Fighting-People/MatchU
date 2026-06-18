@@ -1,4 +1,4 @@
-package com.example.matchux;
+package com.example.matchux.post;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.matchux.post.PostItem;
+import com.example.matchux.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 

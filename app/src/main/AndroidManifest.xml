@@ -39,6 +39,9 @@
         <activity
             android:name=".profile.ProfileActivity"
             android:exported="false" />
+        <activity
+            android:name=".post.WritePostActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

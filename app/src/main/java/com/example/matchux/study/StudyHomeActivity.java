@@ -52,7 +52,7 @@ public class StudyHomeActivity extends AppCompatActivity {
 
         writeBtn = findViewById(R.id.writeBtn);
 
-        // 전달받은 스터디 이름
+        chatBtn = findViewById(R.id.chatBtn);
         String title = getIntent().getStringExtra("title");
 
         if(title != null){
