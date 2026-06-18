@@ -109,6 +109,14 @@
             android:layout_margin="16dp"
             android:background="@android:color/white">
 
+            <Button
+                android:id="@+id/btnLeaveStudy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="모임 탈퇴하기"
+                android:backgroundTint="#FF4444"
+                android:layout_marginTop="20dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -3,15 +3,18 @@ package com.example.matchux;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.matchux.profile.ProfileActivity;
+import com.example.matchux.study.MyStudyActivity;
 import com.example.matchux.study.Study;
 import com.example.matchux.study.StudyAdapter;
 import com.example.matchux.study.StudyCreateActivity;
+import com.example.matchux.study.StudyHomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,28 +25,25 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Firestore 인스턴스 초기화
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    // 실제 데이터와 어댑터 선언
     List<Study> studyList = new ArrayList<>();
     StudyAdapter adapter;
 
-    // UI 객체 선언
+    // UI 객체 선언 (중복 제거)
     Button btnAll;
     Button createButton;
     Button categoryButton1;
     Button categoryButton2;
     Button categoryButton3;
     Button categoryButton4;
-    ListView studyListView;
+    RecyclerView studyListView; // RecyclerView로 변경 완료
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 1. UI 객체들 ID 연결
+        // UI 컴포넌트 연결
         studyListView = findViewById(R.id.studyListView);
         createButton = findViewById(R.id.createButton);
         btnAll = findViewById(R.id.btnAll);
@@ -52,22 +52,22 @@ public class MainActivity extends AppCompatActivity {
         categoryButton3 = findViewById(R.id.categoryButton3);
         categoryButton4 = findViewById(R.id.categoryButton4);
 
-        // 2. 중요: 어댑터를 먼저 생성한 후 리스트뷰에 세팅 (순서 필수 변경됨)
+        // 리사이클러뷰 세팅
+        studyListView.setLayoutManager(new LinearLayoutManager(this));
+
+        // 기존에 생성자 인자 개수가 어떻게 정의되었는지에 맞춰 호출 (보통 context와 list 전달)
         adapter = new StudyAdapter(this, studyList);
         studyListView.setAdapter(adapter);
 
-        // 3. 앱 실행 시 최초 1회 전체 데이터 가져오기
+        // 초기 데이터 로드
         getStudiesFromFirestore(null);
 
-        // 4. 스터디 생성 버튼 클릭 이벤트
-        createButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudyCreateActivity.class));
-        });
+        // 스터디 생성 버튼 클릭
+        createButton.setOnClickListener(v -> startActivity(new Intent(this, StudyCreateActivity.class)));
 
-        // 5. 카테고리 버튼 클릭 이벤트 세팅
-
+        // 카테고리 버튼 클릭 이벤트 세팅
         btnAll.setOnClickListener(v -> {
-            getStudiesFromFirestore(null); // 필터 없이 전부 가져오기
+            getStudiesFromFirestore(null);
             Toast.makeText(this, "전체 목록을 보여줍니다.", Toast.LENGTH_SHORT).show();
         });
 
@@ -82,41 +82,43 @@ public class MainActivity extends AppCompatActivity {
         });
 
         categoryButton3.setOnClickListener(v -> {
-            // 필요 시 추가 구현 가능 영역
             getStudiesFromFirestore("음악");
+            Toast.makeText(this, "음악 카테고리", Toast.LENGTH_SHORT).show();
         });
 
         categoryButton4.setOnClickListener(v -> {
-            // 필요 시 추가 구현 가능 영역
             getStudiesFromFirestore("게임");
+            Toast.makeText(this, "게임 카테고리", Toast.LENGTH_SHORT).show();
         });
 
-
-
-        // 6. 하단 네비게이션 바 세팅
+        // 하단 네비게이션 바 세팅 및 리스너 등록
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setSelectedItemId(R.id.nav_home);
 
         bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                startActivity(new Intent(this, MainActivity.class));
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
                 return true;
-            } else if (id == R.id.nav_my_meeting) {
-                // startActivity(new Intent(this, MyMeetingActivity.class));
-                // return true;
-            } else if (id == R.id.nav_profile) {
-                 startActivity(new Intent(this, ProfileActivity.class));
-                 return true;
+            } else if (itemId == R.id.nav_my_meeting) {
+                // 내 모임 리스트 화면(MyStudyActivity)으로 부드럽게 이동
+                startActivity(new Intent(this, MyStudyActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+                // 프로필 화면으로 부드럽게 이동
+                startActivity(new Intent(this, ProfileActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
             }
             return false;
-        });
-    } // onCreate 끝
+        }); // 👈 꼬여있던 세미콜론과 괄호 정비 완료
+    }
 
-    // Firestore 연동 데이터 획득 메서드 (오류 없이 온전히 분리됨)
+    // Firestore 데이터 획득 메서드
     private void getStudiesFromFirestore(String categoryName) {
         Query query = db.collection("Study");
-
         if (categoryName != null) {
             query = query.whereEqualTo("category", categoryName);
         }
@@ -126,19 +128,20 @@ public class MainActivity extends AppCompatActivity {
             for (DocumentSnapshot doc : queryDocumentSnapshots) {
                 Study study = doc.toObject(Study.class);
                 if (study != null) {
+                    study.studyId = doc.getId();
                     studyList.add(study);
                 }
             }
             adapter.notifyDataSetChanged();
         }).addOnFailureListener(e -> {
-            Toast.makeText(MainActivity.this, "에러 발생: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "에러: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // 화면으로 돌아올 때마다 데이터를 새로고침함
+        // 화면으로 돌아올 때마다 데이터 새로고침
         getStudiesFromFirestore(null);
     }
 }

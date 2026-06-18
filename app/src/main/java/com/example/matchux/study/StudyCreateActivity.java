@@ -11,11 +11,16 @@ import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.matchux.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudyCreateActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +58,21 @@ public class StudyCreateActivity extends AppCompatActivity {
                 return;
             }
 
+            if (auth.getCurrentUser() == null) {
+                Toast.makeText(this, "로그인 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 4. 현재 생성하는 유저(방장)의 UID를 참여 멤버 리스트에 첫 번째로 추가
+            String myUid = auth.getCurrentUser().getUid();
+            List<String> membersList = new ArrayList<>();
+            membersList.add(myUid);
+
             int maxPeople = Integer.parseInt(maxPeopleStr);
 
-            // 선택된 카테고리(selectedCategory)를 넣어서 생성
-            Study study = new Study(selectedCategory, false, maxPeople, Description, StudyName);
+            // [수정] 통일된 Study 생성자 규격(총 7개 인자)에 완벽하게 매칭
+            // 처음 생성할 때는 문서 ID가 없으므로 첫 인자에 null을 넘깁니다.
+            Study study = new Study(null, selectedCategory, false, maxPeople, Description, StudyName, membersList);
 
             db.collection("Study")
                     .add(study)

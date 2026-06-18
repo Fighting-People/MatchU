@@ -2,14 +2,14 @@ package com.example.matchux.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.matchux.MainActivity;
 import com.example.matchux.R;
+import com.example.matchux.study.MyStudyActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,27 +41,33 @@ public class ProfileActivity extends AppCompatActivity {
         tvSex       = findViewById(R.id.tvSex);
         tvInterests = findViewById(R.id.tvInterests);
 
-        // Firestore에서 데이터 불러오기
+        // 2. Firestore에서 회원 프로필 데이터 불러오기
         loadUserProfile();
 
-        // 6. 하단 네비게이션 바 세팅
+        // 3. 하단 네비게이션 바 세팅
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
-        bottomNav.setSelectedItemId(R.id.nav_home);
+        bottomNav.setSelectedItemId(R.id.nav_profile);
 
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
+
             if (id == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             } else if (id == R.id.nav_my_meeting) {
-                // startActivity(new Intent(this, MyMeetingActivity.class));
-                // return true;
+                startActivity(new Intent(this, MyStudyActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
             } else if (id == R.id.nav_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
                 return true;
             }
             return false;
         });
-    }
+    } // onCreate 끝
 
     private void loadUserProfile() {
         // 현재 로그인된 유저 확인
@@ -95,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "불러오기 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "프로필 로드 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-    }
-}
+    } // loadUserProfile 끝
+} // ProfileActivity 클래스 끝

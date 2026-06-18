@@ -1,70 +1,81 @@
 package com.example.matchux.study;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.matchux.R;
 
 import java.util.List;
 
-public class StudyAdapter extends BaseAdapter {
+public class StudyAdapter extends RecyclerView.Adapter<StudyAdapter.StudyViewHolder> {
+
     private Context context;
     private List<Study> studyList;
+    private OnItemClickListener listener;
 
+    // 인터페이스 정의
+    public interface OnItemClickListener {
+        void onItemClick(Study study, String documentId);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    // MainActivity 호출 구조에 맞게 Context를 포함한 생성자 정의
     public StudyAdapter(Context context, List<Study> studyList) {
         this.context = context;
         this.studyList = studyList;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
-        return studyList.size(); // 리스트에 담긴 스터디 개수만큼 생성
+    public StudyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_study, parent, false);
+        return new StudyViewHolder(view);
     }
 
     @Override
-    public Object getItem(int position) {
-        return studyList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // 1. 새로 만든 커스텀 레이아웃(list_item_study)을 적용합니다.
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.list_item_study, parent, false);
-        }
-
-        // 2. 현재 순서에 맞는 데이터 획득
+    public void onBindViewHolder(@NonNull StudyViewHolder holder, int position) {
         Study study = studyList.get(position);
 
-        // 3. 커스텀 레이아웃 안의 컴포넌트들과 아이디 연결
-        TextView tvCategory = convertView.findViewById(R.id.tvCategory);
-        TextView tvMaxMember = convertView.findViewById(R.id.tvMaxMember);
-        TextView tvTitle = convertView.findViewById(R.id.tvTitle);
-        TextView tvDescription = convertView.findViewById(R.id.tvDescription);
+        // getter 메서드를 사용하여 데이터 세팅 (필드 직접 접근인 study.category 형태도 가능)
+        holder.tvCategory.setText(study.getCategory());
+        holder.tvMaxMember.setText("정원: " + study.getMaxPeople() + "명");
+        holder.tvTitle.setText(study.getStudyName());
+        holder.tvDescription.setText(study.getDescription());
 
-        // 4. 데이터 반영
-        tvCategory.setText(study.category);
-        tvMaxMember.setText("정원: " + study.maxMember + "명");
-        tvTitle.setText(study.studyTitle);
-        tvDescription.setText(study.studyDescription);
-
-        return convertView;
+        // [추가] 리사이클러뷰 자체 아이템 클릭 리스너 연결로 StudyHomeActivity 이동 구현
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StudyHomeActivity.class);
+            intent.putExtra("studyId", study.getStudyId());
+            intent.putExtra("title", study.getStudyName());
+            context.startActivity(intent);
+        });
     }
 
-    // 데이터를 갱신할 때 쓰는 편의 메서드
-    public void updateData(List<Study> newList) {
-        this.studyList = newList;
-        notifyDataSetChanged();
+    @Override
+    public int getItemCount() {
+        return studyList.size();
+    }
+
+    // ViewHolder 정의
+    class StudyViewHolder extends RecyclerView.ViewHolder {
+        TextView tvCategory, tvMaxMember, tvTitle, tvDescription;
+
+        public StudyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvCategory = itemView.findViewById(R.id.tvCategory);
+            tvMaxMember = itemView.findViewById(R.id.tvMaxMember);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+        }
     }
 }
