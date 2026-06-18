@@ -2,6 +2,8 @@ package com.example.matchux.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +54,10 @@ public class ProfileActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.nav_home) {
-                startActivity(new Intent(this, MainActivity.class));
+                // 홈으로 돌아갈 때 기존 MainActivity를 재사용하고 그 위의 액티비티들을 정리
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
@@ -62,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(this, ProfileActivity.class));
+                // 이미 프로필 화면이므로 아무것도 하지 않음
                 return true;
             }
             return false;

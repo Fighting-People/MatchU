@@ -55,7 +55,11 @@ public class MyStudyActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
-                startActivity(new Intent(this, MainActivity.class));
+                // 이미 MainActivity가 뒤에 있으므로 단순히 현재 화면을 닫으면 홈으로 돌아갑니다.
+                // 또는 FLAG_ACTIVITY_CLEAR_TOP을 사용해 확실히 홈을 최상단으로 가져옵니다.
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
@@ -64,7 +68,7 @@ public class MyStudyActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
+                finish(); // MyStudyActivity를 닫고 ProfileActivity를 엽니다.
                 return true;
             }
             return false;

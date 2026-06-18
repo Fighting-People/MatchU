@@ -30,7 +30,7 @@ public class StudyHomeActivity extends AppCompatActivity {
 
     TextView studyTitle;
 
-    Button postBtn, scheduleBtn, infoBtn;
+    Button postBtn, scheduleBtn, infoBtn, btnLeaveStudy;
 
     RecyclerView recyclerView;
 

@@ -103,13 +103,11 @@ public class MainActivity extends AppCompatActivity {
                 // 내 모임 리스트 화면(MyStudyActivity)으로 부드럽게 이동
                 startActivity(new Intent(this, MyStudyActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
             } else if (itemId == R.id.nav_profile) {
                 // 프로필 화면으로 부드럽게 이동
                 startActivity(new Intent(this, ProfileActivity.class));
                 overridePendingTransition(0, 0);
-                finish();
                 return true;
             }
             return false;
