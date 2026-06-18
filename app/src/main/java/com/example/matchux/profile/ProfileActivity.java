@@ -2,6 +2,8 @@ package com.example.matchux.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,16 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        ImageButton btnBack = findViewById(R.id.btnBack4);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 현재 화면을 닫고 이전 화면(메인 또는 로그인 등)으로 돌아갑니다.
+                finish();
+            }
+        });
 
         // 뷰 연결
         tvNickname  = findViewById(R.id.tvNickname);

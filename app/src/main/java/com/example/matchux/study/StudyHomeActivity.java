@@ -3,6 +3,7 @@ package com.example.matchux.study;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,6 +39,11 @@ public class StudyHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_home);
+
+        ImageButton btnBack = findViewById(R.id.btnBack2);
+        btnBack.setOnClickListener(v -> {
+            finish(); //
+        });
 
         // 연결
         studyTitle = findViewById(R.id.studyTitle);

@@ -1,72 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="20dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".study.StudyCreateActivity">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".study.StudyCreateActivity">
 
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
-        android:text="스터디 생성"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/StudyName"
-        android:hint="스터디 이름"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:paddingStart="10dp"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="40dp"
+        android:paddingBottom="24dp">
 
-    <Spinner
-        android:id="@+id/spinnerCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/category_spinner_border" />
+        <ImageButton
+            android:id="@+id/btnBack3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="#00FFFFFF"
+            android:scaleType="centerInside"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="뒤로가기" />
 
-    <EditText
-        android:id="@+id/Description"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:hint="설명"
-        android:gravity="top|start"
-        android:background="@drawable/edittext_border"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="16dp" />
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:text="스터디 생성"
+            android:textColor="#212121"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/SetMaxPeople"
-        android:hint="최대 인원(명)"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:paddingStart="10dp"
-        android:layout_marginBottom="24dp"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCreate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#87CEEB"
-        android:textSize="24sp"
-        android:text="스터디 생성" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/StudyName"
+            android:hint="스터디 이름"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingStart="10dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:privateImeOptions="defaultInputmode=korean"/>
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/category_spinner_border" />
+
+        <EditText
+            android:id="@+id/Description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="설명"
+            android:gravity="top|start"
+            android:background="@drawable/edittext_border"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:privateImeOptions="defaultInputmode=korean"/>
+
+        <EditText
+            android:id="@+id/SetMaxPeople"
+            android:hint="최대 인원(명)"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingStart="10dp"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#87CEEB"
+            android:textSize="24sp"
+            android:text="스터디 생성" />
+    </LinearLayout>
