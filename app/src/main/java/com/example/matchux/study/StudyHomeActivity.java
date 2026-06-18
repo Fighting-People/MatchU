@@ -1,5 +1,7 @@
 package com.example.matchux.study;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.matchux.R;
 import com.example.matchux.post.PostAdapter;
+import com.example.matchux.post.PostDetailActivity;
 import com.example.matchux.post.PostItem;
+import com.example.matchux.post.WritePostActivity;
+import com.example.matchux.schedules.ScheduleAdapter;
+import com.example.matchux.schedules.ScheduleDetailActivity;
+import com.example.matchux.schedules.ScheduleItem;
+import com.example.matchux.schedules.WriteScheduleActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
@@ -31,22 +39,26 @@ public class StudyHomeActivity extends AppCompatActivity {
 
     TextView studyTitle;
 
-    Button postBtn, scheduleBtn, infoBtn, btnLeaveStudy;
-
-    Button postBtn, scheduleBtn, infoBtn, btnLeaveStudy, btnJoinStudy; // 🌟 참여 버튼 추가
+    Button postBtn, scheduleBtn, infoBtn, btnLeaveStudy,btnJoinStudy;
     RecyclerView recyclerView;
 
     LinearLayout infoLayout;
 
     FloatingActionButton writeBtn;
 
-    FloatingActionButton chatBtn;
+
 
     ArrayList<PostItem> postList;
-    PostAdapter adapter;
+    PostAdapter postAdapter;
+
+    ArrayList<ScheduleItem> scheduleList;
+    ScheduleAdapter scheduleAdapter;
 
     String studyId;
     String currentUserId;
+
+    private enum Tab { POSTS, SCHEDULE, INFO }
+    Tab currentTab = Tab.POSTS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,14 +90,12 @@ public class StudyHomeActivity extends AppCompatActivity {
         infoLayout = findViewById(R.id.infoLayout);
 
         writeBtn = findViewById(R.id.writeBtn);
-        chatBtn = findViewById(R.id.chatBtn);
 
         btnLeaveStudy = findViewById(R.id.btnLeaveStudy);
-        btnJoinStudy = findViewById(R.id.btnJoinStudy); // 🌟 XML에 추가할 참여 버튼 연결
+        btnJoinStudy = findViewById(R.id.btnJoinStudy); // XML에 추가할 참여 버튼 연결
 
         // 2. Intent 데이터 처리
         studyId = getIntent().getStringExtra("studyId");
-        chatBtn = findViewById(R.id.chatBtn);
         String title = getIntent().getStringExtra("title");
 
         if (title != null) {
@@ -98,51 +108,79 @@ public class StudyHomeActivity extends AppCompatActivity {
             return;
         }
 
-        // 3. 🌟 현재 유저의 참여 여부 체크 및 버튼 제어
+        // 3. 현재 유저의 참여 여부 체크 및 버튼 제어
         checkParticipationStatus();
 
-        // 4. 게시글 리사이클러뷰 세팅
+        // 4. 리사이클러뷰 및 어댑터 초기화
         postList = new ArrayList<>();
+        postAdapter = new PostAdapter(postList);
+        postAdapter.setOnItemClickListener(item -> {
+            Intent intent = new Intent(this, PostDetailActivity.class);
+            intent.putExtra("title", item.getTitle());
+            intent.putExtra("content", item.getContent());
+            startActivity(intent);
+        });
 
-        postList.add(new PostItem("첫 게시글", "안녕하세요"));
-        postList.add(new PostItem("공지사항", "스터디 시간 변경"));
+        scheduleList = new ArrayList<>();
+        scheduleAdapter = new ScheduleAdapter(scheduleList);
+        scheduleAdapter.setOnItemClickListener(item -> {
+            Intent intent = new Intent(this, ScheduleDetailActivity.class);
+            intent.putExtra("date", item.getDate());
+            intent.putExtra("title", item.getTitle());
+            intent.putExtra("content", item.getContent());
+            startActivity(intent);
+        });
 
-        // 어댑터 연결
-        adapter = new PostAdapter(postList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(postAdapter); // 기본은 게시글 어댑터
 
-        // 5. 초기 화면 가시성 세팅
+        // 5. 초기 데이터 로드 (게시글)
+        loadPosts();
+
+        // 6. 초기 화면 가시성 세팅
         recyclerView.setVisibility(View.VISIBLE);
         infoLayout.setVisibility(View.GONE);
         if (writeBtn != null) writeBtn.setVisibility(View.VISIBLE);
 
-        // 6. 상단 탭 클릭 이벤트
+        // 7. 상단 탭 클릭 이벤트
         postBtn.setOnClickListener(v -> {
-
+            currentTab = Tab.POSTS;
             recyclerView.setVisibility(View.VISIBLE);
-
             infoLayout.setVisibility(View.GONE);
-            if (writeBtn != null) writeBtn.setVisibility(View.VISIBLE);
+            if (writeBtn != null) {
+                writeBtn.setVisibility(View.VISIBLE);
+                // 버튼 색상 변경 (게시글임을 명시)
+                writeBtn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#87CEEB")));
+            }
+            
+            recyclerView.setAdapter(postAdapter);
+            loadPosts();
         });
 
         // 일정 버튼
         scheduleBtn.setOnClickListener(v -> {
+            currentTab = Tab.SCHEDULE;
+            recyclerView.setVisibility(View.VISIBLE);
+            infoLayout.setVisibility(View.GONE);
+            if (writeBtn != null) {
+                writeBtn.setVisibility(View.VISIBLE);
+                // 버튼 색상 변경 (일정임을 명시 - 보라색 계열로 차별화)
+                writeBtn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#6200EE")));
+            }
 
-            // 나중에 ScheduleActivity 연결 예정
-
+            recyclerView.setAdapter(scheduleAdapter);
+            loadSchedules();
         });
 
         // 정보 버튼
         infoBtn.setOnClickListener(v -> {
-
+            currentTab = Tab.INFO;
             recyclerView.setVisibility(View.GONE);
-
             infoLayout.setVisibility(View.VISIBLE);
             if (writeBtn != null) writeBtn.setVisibility(View.GONE);
         });
 
-        // 7. 탈퇴 버튼 클릭
+        // 8. 탈퇴 버튼 클릭
         if (btnLeaveStudy != null) {
             btnLeaveStudy.setOnClickListener(v -> {
                 if (auth.getCurrentUser() == null) {
@@ -162,6 +200,56 @@ public class StudyHomeActivity extends AppCompatActivity {
         if (btnJoinStudy != null) {
             btnJoinStudy.setOnClickListener(v -> joinStudyGroup());
         }
+
+        // 9. 🌟 글쓰기 버튼 클릭 (탭에 따라 다른 Activity 연결)
+        if (writeBtn != null) {
+            writeBtn.setOnClickListener(v -> {
+                Intent intent;
+                if (currentTab == Tab.POSTS) {
+                    intent = new Intent(this, WritePostActivity.class);
+                } else {
+                    intent = new Intent(this, WriteScheduleActivity.class);
+                }
+                intent.putExtra("studyId", studyId);
+                startActivity(intent);
+            });
+        }
+    }
+
+    private void loadPosts() {
+        db.collection("Posts")
+                .whereEqualTo("studyId", studyId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    postList.clear();
+                    for (com.google.firebase.firestore.DocumentSnapshot doc : queryDocumentSnapshots) {
+                        PostItem item = doc.toObject(PostItem.class);
+                        if (item != null) postList.add(item);
+                    }
+                    postAdapter.notifyDataSetChanged();
+                });
+    }
+
+    private void loadSchedules() {
+        db.collection("Schedule")
+                .whereEqualTo("studyId", studyId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    scheduleList.clear();
+                    for (com.google.firebase.firestore.DocumentSnapshot doc : queryDocumentSnapshots) {
+                        ScheduleItem item = doc.toObject(ScheduleItem.class);
+                        if (item != null) scheduleList.add(item);
+                    }
+                    scheduleAdapter.notifyDataSetChanged();
+                });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 화면에 다시 돌아올 때 데이터 새로고침
+        if (currentTab == Tab.POSTS) loadPosts();
+        else if (currentTab == Tab.SCHEDULE) loadSchedules();
     }
 
     // 🌟 참여 여부 확인 로직

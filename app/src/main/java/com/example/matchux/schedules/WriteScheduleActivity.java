@@ -1,6 +1,5 @@
 package com.example.matchux.schedules;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -11,8 +10,6 @@ import com.example.matchux.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 // 다른 패키지에 있는 MainActivity를 사용하기 위해 import 추가
-import com.example.matchux.MainActivity;
-import com.example.matchux.R;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ScheduleActivity extends AppCompatActivity {
+public class WriteScheduleActivity extends AppCompatActivity {
 
     // 1. 사용할 화면 요소 객체 선언
     private EditText titleEditText;
@@ -44,6 +41,8 @@ public class ScheduleActivity extends AppCompatActivity {
         titleEditText = findViewById(R.id.editTextScheduleTitle);
         contentEditText = findViewById(R.id.editTextScheduleContent);
         dateEditText = findViewById(R.id.editTextScheduleDate);
+
+        findViewById(R.id.btnBackSchedule).setOnClickListener(v -> finish());
 
         Button saveButton = findViewById(R.id.buttonSaveSchedule);
 
@@ -69,19 +68,24 @@ public class ScheduleActivity extends AppCompatActivity {
         }
 
         String uid = auth.getCurrentUser().getUid();
+        String studyId = getIntent().getStringExtra("studyId"); // 스터디 ID 받기
 
         // 5. Posts 컬렉션에 저장할 데이터 구성
         Map<String, Object> postMap = new HashMap<>();
         postMap.put("title", title);
         postMap.put("content", content);
         postMap.put("authorUid", uid);
+        postMap.put("studyId", studyId); // 스터디 ID 추가
         postMap.put("timestamp", com.google.firebase.Timestamp.now()); // 작성 시간
 
         // 6. Schedule 컬렉션에 저장할 데이터 구성
         Map<String, Object> scheduleMap = new HashMap<>();
         scheduleMap.put("title", title);
+        scheduleMap.put("content", content); // 내용도 추가
         scheduleMap.put("date", date); // 일정 날짜
         scheduleMap.put("userUid", uid);
+        scheduleMap.put("studyId", studyId); // 스터디 ID 추가
+        scheduleMap.put("timestamp", com.google.firebase.Timestamp.now());
 
         // 7. Firestore에 저장 (문서 ID 자동 생성 방식: .add())
         // 먼저 Posts 컬렉션에 저장

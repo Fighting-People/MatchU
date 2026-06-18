@@ -61,6 +61,9 @@
                 android:textStyle="bold"
                 app:backgroundTint="#87CEEB"
                 app:cornerRadius="12dp"
+                app:icon="@drawable/ic_post"
+                app:iconTint="#FFFFFF"
+                app:iconGravity="textStart"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
             <com.google.android.material.button.MaterialButton
@@ -74,6 +77,9 @@
                 android:textStyle="bold"
                 app:backgroundTint="#87CEEB"
                 app:cornerRadius="12dp"
+                app:icon="@drawable/ic_schedule"
+                app:iconTint="#FFFFFF"
+                app:iconGravity="textStart"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
             <com.google.android.material.button.MaterialButton
@@ -87,6 +93,9 @@
                 android:textStyle="bold"
                 app:backgroundTint="#87CEEB"
                 app:cornerRadius="12dp"
+                app:icon="@drawable/ic_info"
+                app:iconTint="#FFFFFF"
+                app:iconGravity="textStart"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
         </LinearLayout>
@@ -163,18 +172,6 @@
         app:backgroundTint="#87CEEB"
         app:tint="#FFFFFF"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/chatBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@id/writeBtn"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="4dp"
-        android:src="@android:drawable/sym_action_chat"
-        android:contentDescription="채팅 버튼"
-        app:backgroundTint="#87CEEB"
-        app:tint="#FFFFFF"
-        app:maxImageSize="24dp"/>
+
 
 </RelativeLayout>

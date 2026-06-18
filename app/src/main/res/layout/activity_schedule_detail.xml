@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <ImageButton
+        android:id="@+id/btnBackScheduleDetail"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_back"
+        android:scaleType="centerInside"
+        android:contentDescription="뒤로가기" />
+
+    <TextView
+        android:id="@+id/tvDetailScheduleDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="2024-01-01"
+        android:textColor="#6200EE"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDetailScheduleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="일정 제목"
+        android:textColor="#212121"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="16dp"
+        android:background="#EEEEEE" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvDetailScheduleContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="일정 상세 내용입니다."
+            android:textColor="#424242"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp" />
+    </ScrollView>
+
+</LinearLayout>

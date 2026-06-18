@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://tools.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="#F8F9FA"
+    android:padding="20dp"
+    tools:context=".study.StudyCreateActivity"> <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="제목"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:textColor="#333333"
+    android:layout_marginBottom="8dp" />
 
-    <!-- 제목 레이블 -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="제목"
-        android:textSize="14sp"
-        android:textColor="#333333"
-        android:layout_marginBottom="4dp" />
-
-    <!-- ★ id: editTextTitle -->
     <EditText
         android:id="@+id/editTextTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="제목을 입력해주세요"
         android:inputType="text"
-        android:padding="12dp"
-        android:layout_marginBottom="20dp" />
+        android:paddingHorizontal="16dp"
+        android:background="@drawable/edittext_border"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        android:layout_marginBottom="24dp"
+        android:imeOptions="actionNext"
+        android:privateImeOptions="defaultInputmode=korean" />
 
-    <!-- 내용 레이블 -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="내용"
-        android:textSize="14sp"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:textColor="#333333"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginBottom="8dp" />
 
-    <!-- ★ id: editTextContent (layout_weight=1 로 남은 공간 채움) -->
     <EditText
         android:id="@+id/editTextContent"
         android:layout_width="match_parent"
@@ -44,17 +47,24 @@
         android:hint="내용을 입력해주세요"
         android:inputType="textMultiLine"
         android:gravity="top|start"
-        android:padding="12dp"
-        android:layout_marginBottom="20dp" />
+        android:padding="16dp"
+        android:background="@drawable/edittext_border"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        android:layout_marginBottom="24dp"
+        android:privateImeOptions="defaultInputmode=korean" />
 
-    <!-- ★ id: buttonSubmit -->
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:text="게시글 등록"
         android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#6750A4" />
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#87CEED"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="8dp" />
 
 </LinearLayout>

@@ -55,6 +55,7 @@ public class WritePostActivity extends AppCompatActivity {
         Map<String, Object> postData = new HashMap<>();
         postData.put("title",   postItem.getTitle());
         postData.put("content", postItem.getContent());
+        postData.put("studyId", getIntent().getStringExtra("studyId")); // 스터디 ID 추가
         postData.put("uid",     FirebaseAuth.getInstance().getCurrentUser() != null
                 ? FirebaseAuth.getInstance().getCurrentUser().getUid()
                 : "");

@@ -21,7 +21,7 @@
             android:theme="@style/Theme.MatchUx" />
 
         <activity
-            android:name=".schedules.ScheduleActivity"
+            android:name=".schedules.WriteScheduleActivity"
             android:exported="false"
             android:label="@string/title_activity_schedule"
             android:theme="@style/Theme.MatchUx" />
@@ -39,14 +39,16 @@
         <activity android:name=".profile.UserProfileActivity"
             android:exported="false"/>
         <activity
-            android:name=".auth.LoginActivity"
+            android:name=".auth.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".auth.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".auth.RegisterActivity"
             android:exported="false" />
@@ -61,6 +63,12 @@
             android:exported="false" />
         <activity
             android:name=".profile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".post.PostDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".schedules.ScheduleDetailActivity"
             android:exported="false" />
     </application>
 

@@ -49,6 +49,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return list.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(PostItem item);
+    }
+
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title, content;
@@ -58,6 +68,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             title = itemView.findViewById(R.id.postTitle);
             content = itemView.findViewById(R.id.postContent);
+
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(list.get(position));
+                }
+            });
         }
     }
 }
